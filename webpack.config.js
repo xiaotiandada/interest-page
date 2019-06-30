@@ -27,32 +27,53 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-
-	entry: {
-		wyy_app_home: './src/index.ts',
-	},
+	entry: './src/index.js',
 
 	output: {
 		filename: '[name].[chunkhash].js',
 		path: path.resolve(__dirname, 'dist')
 	},
 
-	plugins: [
-		new webpack.ProgressPlugin(),
-		new HtmlWebpackPlugin({
-			filename: './dist/index.html',
-      template: './src/index.html',
-      inject: true,
-      minify: true,
-		})],
+	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({
+		filename: 'index.html',
+    template: 'src/index.html'
+	})],
+
 	module: {
 		rules: [
 			{
-				test: /.(ts|tsx)?$/,
-				loader: 'ts-loader',
+				test: /.(js|jsx)$/,
 				include: [path.resolve(__dirname, 'src')],
-				exclude: [/node_modules/]
-			}
+				loader: 'babel-loader',
+
+				options: {
+					plugins: ['syntax-dynamic-import'],
+
+					presets: [
+						[
+							'@babel/preset-env',
+							{
+								modules: false
+							}
+						]
+					]
+				}
+			},
+			{
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'less-loader',
+        ],
+			},
+			{
+        test: /\.css$/,
+        use: [
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'less-loader',
+        ],
+      },
 		]
 	},
 
@@ -74,9 +95,5 @@ module.exports = {
 
 	devServer: {
 		open: true
-	},
-
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
 	}
 };

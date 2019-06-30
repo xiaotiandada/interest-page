@@ -14,9 +14,7 @@
         ],
         "webpackOptions": {
           "mode": "'development'",
-          "entry": {
-            "wyy_app_home": "'./src/wyy_app_home.ts'"
-          },
+          "entry": "'./src/index.js'",
           "output": {
             "filename": "'[name].[chunkhash].js'",
             "path": "path.resolve(__dirname, 'dist')"
@@ -28,14 +26,24 @@
           "module": {
             "rules": [
               {
-                "test": "/.(ts|tsx)?$/",
-                "loader": "'ts-loader'",
+                "test": "/.(js|jsx)$/",
                 "include": [
                   "path.resolve(__dirname, 'src')"
                 ],
-                "exclude": [
-                  "/node_modules/"
-                ]
+                "loader": "'babel-loader'",
+                "options": {
+                  "plugins": [
+                    "'syntax-dynamic-import'"
+                  ],
+                  "presets": [
+                    [
+                      "'@babel/preset-env'",
+                      {
+                        "'modules'": false
+                      }
+                    ]
+                  ]
+                }
               }
             ]
           },
@@ -55,13 +63,6 @@
           },
           "devServer": {
             "open": true
-          },
-          "resolve": {
-            "extensions": [
-              "'.tsx'",
-              "'.ts'",
-              "'.js'"
-            ]
           }
         }
       }
