@@ -6,3 +6,27 @@
 body {
   background: #DB2C1F;
 }
+
+.lottie-logo {
+  width: 211px;
+}
+
+.logo-bottom {
+  width: 122px;
+  position: fixed;
+  bottom: 22.5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  animation: logoBottom 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes logoBottom {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
