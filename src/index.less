@@ -52,7 +52,7 @@ body {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  animation: icon-bottom 1.5s;
+  animation: logo-button-bottom 1.5s;
   animation-fill-mode: forwards;
   opacity: 0;
   &.login {
@@ -66,6 +66,20 @@ body {
     color: #fff;
     .px2rem(bottom, 193);
     animation-delay: 3s;
+  }
+}
+
+@keyframes logo-button-bottom {
+  0% {
+    transform: translate(-50%, 40/75rem);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
 
@@ -103,7 +117,7 @@ body {
 
 @keyframes icon-bottom {
   0% {
-    transform: translate(-50%, 40/75rem);
+    transform: translate(0, 40/75rem);
     opacity: 0;
   }
   35% {
@@ -111,6 +125,6 @@ body {
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(0, 0);
   }
 }
