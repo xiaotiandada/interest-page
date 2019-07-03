@@ -17,4 +17,4 @@ to bundle your application
 
 ### Review
 
-[🚀 wyy_app 动画](http://xiaotiandada.github.io/interest-page/dist/)
+[🚀 wyy_app 动画](https://xiaotiandada.github.io/interest-page/dist/index.html)
