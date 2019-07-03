@@ -15,6 +15,9 @@ const webpack = require('webpack');
  */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+ 
+
 
 /*
  * We've enabled HtmlWebpackPlugin for you! This generates a html
@@ -34,10 +37,16 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 
-	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({
+	plugins: [
+		new webpack.ProgressPlugin(),
+		new HtmlWebpackPlugin({
 		filename: 'index.html',
     template: 'src/index.html'
-	})],
+		}),
+		new CopyPlugin([
+      { from: 'src/static', 
+				to: 'static' },
+		])],
 
 	module: {
 		rules: [

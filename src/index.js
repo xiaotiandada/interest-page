@@ -12,6 +12,6 @@ lottie.loadAnimation({
   renderer: 'svg',
   loop: false,
   autoplay: true,
-  path: 'src/data.json',
+  path: './static/data.json',
 });
 
