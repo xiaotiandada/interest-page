@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+      .list li {
+        flex: 1;
+      }
+      .list li a {
+        text-decoration: none;
+        color: inherit;
+        padding-top: 1rem;
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        font-size: 40px;
+      }
+      .list li a span {
+        display: block;
+        background: rgba(0, 0, 0, 0.1);
+        padding: 0.5rem;
+        font-size: 22px;
+        margin-top: 1rem;
+      }
+
+      .list li:nth-child(1) {
+        background: #90caf9;
+      }
+      .list li:nth-child(2) {
+        background: #80deea;
+      }
+      .list li:nth-child(3) {
+        background: #a5d6a7;
+      }
+      .list li:nth-child(4) {
+        background: #e6ee9c;
+      }
+      .list li:nth-child(5) {
+        background: #fff176;
+      }
+      .list li:nth-child(6) {
+        background: #ffd54f;
+      }
+
+      @media (hover: hover) {
+        .list {
+          --delay: 0.05s;
+        }
+        .list li a span {
+          transform: translateY(100px);
+          transition: 0.2s;
+        }
+        .list:hover span {
+          transform: translateY(0);
+        }
+
+        .list li:nth-child(1) span {
+          transition-delay: calc(var(--delay) * 0);
+        }
+        .list li:nth-child(2) span {
+          transition-delay: calc(var(--delay) * 1);
+        }
+        .list li:nth-child(3) span {
+          transition-delay: calc(var(--delay) * 2);
+        }
+        .list li:nth-child(4) span {
+          transition-delay: calc(var(--delay) * 3);
+        }
+        .list li:nth-child(5) span {
+          transition-delay: calc(var(--delay) * 4);
+
+        }
+        .list li:nth-child(6) span {
+          transition-delay: calc(var(--delay) * 5);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="list">
+      <li>
+        <a href="#0">① <span>This</span></a>
+      </li>
+      <li>
+        <a href="#0">② <span>Little</span></a>
+      </li>
+      <li>
+        <a href="#0">③ <span>Piggy</span></a>
+      </li>
+      <li>
+        <a href="#0">④ <span>Went</span></a>
+      </li>
+      <li>
+        <a href="#0">⑤ <span>To</span></a>
+      </li>
+      <li>
+        <a href="#0">⑥ <span>Market</span></a>
+      </li>
+    </ul>
+  </body>
+</html>
