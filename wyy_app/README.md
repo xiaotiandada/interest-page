@@ -13,9 +13,3 @@ yarn build
 ```
 
 to bundle your application
-
-
-### Review
-
-[🚀 wyy_app 动画](https://xiaotiandada.github.io/interest-page/wyy_app)
-[🚀 twitter like](https://xiaotiandada.github.io/interest-page/wyy_app)
