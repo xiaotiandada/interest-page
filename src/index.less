@@ -52,7 +52,7 @@ body {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  animation: logo-button-bottom 1.5s;
+  animation: logo-button-bottom 1.5s ease-out;
   animation-fill-mode: forwards;
   opacity: 0;
   &.login {
@@ -71,10 +71,10 @@ body {
 
 @keyframes logo-button-bottom {
   0% {
-    transform: translate(-50%, 40/75rem);
+    transform: translate(-50%, 80/75rem);
     opacity: 0;
   }
-  35% {
+  20% {
     opacity: 1;
   }
   100% {
@@ -97,7 +97,7 @@ body {
   .icon {
     .px2rem(width, 72);
     .px2rem(height, 72);
-    animation: icon-bottom 1.5s;
+    animation: icon-bottom 1.5s ease-out;
     animation-fill-mode: forwards;
     opacity: 0;
     &:nth-child(4){
@@ -117,10 +117,10 @@ body {
 
 @keyframes icon-bottom {
   0% {
-    transform: translate(0, 40/75rem);
+    transform: translate(0, 80/75rem);
     opacity: 0;
   }
-  35% {
+  20% {
     opacity: 1;
   }
   100% {
