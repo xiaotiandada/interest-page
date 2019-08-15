@@ -16,6 +16,10 @@ to bundle your application
 
 ---
 
+>https://xiaotiandada.github.io/interest-page/
+>
+>(静态页面, 国内访问较慢 稍安勿躁💗)
+
 ### Learn Html Css Es/Ts 💗
 
 ### Review
