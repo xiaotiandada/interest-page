@@ -27,7 +27,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	entry: './src/index.ts',
+	entry: './src/index.js',
 
 	output: {
 		filename: '[name].[chunkhash].js',
@@ -39,10 +39,22 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /.(ts|tsx)?$/,
-				loader: 'ts-loader',
+				test: /.(js|jsx)$/,
 				include: [path.resolve(__dirname, 'src')],
-				exclude: [/node_modules/]
+				loader: 'babel-loader',
+
+				options: {
+					plugins: ['syntax-dynamic-import'],
+
+					presets: [
+						[
+							'@babel/preset-env',
+							{
+								modules: false
+							}
+						]
+					]
+				}
 			},
 			{
         test: /\.less$/,
@@ -52,10 +64,6 @@ module.exports = {
           'less-loader',
         ],
 			},
-			{
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
 		]
 	},
 
@@ -77,9 +85,5 @@ module.exports = {
 
 	devServer: {
 		open: true
-	},
-
-	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
 	}
 };
