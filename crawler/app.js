@@ -4,11 +4,13 @@ const fs = require('fs-extra')
 const path = require('path')
 
 let id = 1
+let maxPage = 10
+
+const sleep = async time => new Promise(resolve => setTimeout(resolve, time))
 
 const getUrlHtml = async () => {
   try {
     const res = await superagent.get(`https://www.zcool.com.cn/?p=${id}`);
-    // console.log(res.text);
     return res.text
   } catch (err) {
     console.error(err);
@@ -24,8 +26,8 @@ const getDom = (html) => {
     let img = $(el).find('.card-img a img').attr('src')
     let title = $(el).find('.card-info .card-info-title a').text()
     arr.push({
-      title: title,
-      url: img
+      title: title.replace(/\//g, ''),
+      url: img.replace('@260w_195h_1c_1e_1o_100sh.jpg', '')
     })
   })
   return arr
@@ -43,10 +45,12 @@ const downloadImg = async arr => {
     return console.log('创建文件夹失败')
   }
 
-  const download = item => {
+  const download = async item => {
+    await sleep(100)
     try {
-      const req =  superagent.get(item.url.replace('@260w_195h_1c_1e_1o_100sh.jpg', ''))
+      const req =  superagent.get(item.url)
       req.pipe(fs.createWriteStream(`./page${id}/${item.title}.png`))
+      console.log(`下载${item.title}done`)
     } catch (error) {
       return console.log(`下载图片失败${item.title}`, error)
     }
@@ -56,9 +60,12 @@ const downloadImg = async arr => {
 }
 
 const init = async () => {
-  let urlHtml = await getUrlHtml()
-  let getDate = await getDom(urlHtml)
-  downloadImg(getDate)
+  for (let i = 0; i < maxPage; i++) {
+    let urlHtml = await getUrlHtml()
+    let getDate = await getDom(urlHtml)
+    await downloadImg(getDate)
+    id = i + 1
+  }
 }
 
 init()
