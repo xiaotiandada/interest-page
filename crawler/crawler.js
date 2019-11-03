@@ -3,9 +3,10 @@ const cheerio = require('cheerio')
 const fs = require('fs-extra')
 const path = require('path')
 const async = require("async");
+const mysql = require('./mysql')
+
 
 let id = 1
-let maxPage = 10
 
 // userAgent
 const userAgents = [
@@ -59,14 +60,14 @@ const getDom = (html) => {
 
 const downloadImg = async (arr, id) => {
   // 先删除文件夹 可以不用这步 因为开始写的时候会重复创建 我又懒得删
-  try {
-    await fs.remove(path.join(__dirname, `/page${id}`))
-  } catch (error) {
-    console.log('删除文件夹失败')
-  }
+  // try {
+  //   await fs.remove(path.join(__dirname, `/image//page${id}`))
+  // } catch (error) {
+  //   console.log('删除文件夹失败')
+  // }
   // 创建文件夹 根据id命名
   try {
-    await fs.mkdir(path.join(__dirname, `/page${id}` ))
+    await fs.emptydir(path.join(__dirname, `static/image/page${id}` ))
   } catch (error) {
     return console.log('创建文件夹失败')
   }
@@ -77,8 +78,12 @@ const downloadImg = async (arr, id) => {
       // 通过 superagent 保存图片
       const req =  superagent.get(item.url)
       .set({ 'User-Agent': userAgent })
+      let url = `/image/page${id}/${item.title}.png`
+      let title = item.title
       // 使用了stream(流)
-      req.pipe(fs.createWriteStream(`./page${id}/${item.title}.png`))
+      req.pipe(fs.createWriteStream(`./static/image/page${id}/${item.title}.png`))
+      // req.pipe(mysql.sqlAdd(url, title))
+      mysql.sqlAdd(url, title)
       return `下载${item.title}done`
     } catch (error) {
       return console.log(`下载图片失败${item.title}`, error)
@@ -97,8 +102,8 @@ const downloadImg = async (arr, id) => {
 
 }
 
-const init = async () => {
-  for (let i = 0; i <= maxPage; i++) {
+const init = async (page = 10) => {
+  for (let i = 0; i <= page; i++) {
     let urlHtml = await getUrlHtml()
     let getDate = await getDom(urlHtml)
     await downloadImg(getDate, id)
@@ -106,4 +111,8 @@ const init = async () => {
   }
 }
 
-init()
+// init()
+
+module.exports = {
+  init
+}

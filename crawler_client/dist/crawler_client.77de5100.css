@@ -1,0 +1,29 @@
+.list li {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+}
+.list li:hover {
+  background-color: #eee;
+}
+.list li:hover img {
+  width: 300px;
+}
+.list li > span {
+  font-size: 14px;
+  color: #333;
+  list-style: 1.5;
+}
+.list li > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+.list img {
+  width: 100px;
+  transition: width 0.3s;
+}
+
+
+/*# sourceMappingURL=/crawler_client.77de5100.css.map */

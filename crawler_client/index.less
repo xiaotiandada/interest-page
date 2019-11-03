@@ -1,0 +1,28 @@
+.list {
+  li {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+    &:hover {
+      background-color: #eee;
+      img {
+        width: 300px;
+      }
+    }
+    & > span {
+      font-size: 14px;
+      color: #333;
+      list-style: 1.5;
+    }
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 20px;
+    }
+  }
+  img {
+    width: 100px;
+    transition: width .3s;
+  }
+}
